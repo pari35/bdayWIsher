@@ -1,0 +1,16 @@
+
+DATABASE_URL="postgresql://test_rq4d_user:2oCjRdjX4aJ60UWhCypCpc71GXCdWP3A@dpg-d47ivui4d50c73878te0-a.singapore-postgres.render.com/test_rq4d"
+
+
+port = 6004
+
+user = avnadmin
+host = pg-10898236-dishaconsult-7421.i.aivencloud.com
+database = defaultdb
+password =AVNS_B51fz5HmCdYoAPiWBXb
+
+SMTP_HOST=mail.naapbooks.in
+SMTP_PORT=587
+SMTP_SECURE=true
+SMTP_USER=jalpaan@naapbooks.in
+SMTP_PASS=SrnolMa1G5o12J8i
