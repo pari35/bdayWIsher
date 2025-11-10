@@ -10,7 +10,7 @@ function createTransporter() {
     const port = 465
     const secure = true
     const user = "paritoshpardeshi35@gmail.com"
-    const pass = "hgtdrxothfrrhhhi"
+    const pass = "qjldihxbyopkijxr"
 
     if (!host || !port || !user || !pass) {
         throw new Error('SMTP configuration missing. Ensure SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS are set');
