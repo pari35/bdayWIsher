@@ -28,11 +28,11 @@ function createTransporter() {
 
 const scheduleCronJobs = () => {
     // Logs when the cron job is scheduled and active
-    cron.schedule('*/1 * * * *', async () => {
-        // cron.schedule('0 7 * * *', async () => {
+    // cron.schedule('*/1 * * * *', async () => {
+    cron.schedule('0 7 * * *', async () => {
         logger.info('Cron job starting: Sending Birthday Mail...');
         try {
-        
+
             let sendMailDetails = await sendMail()
 
         } catch (error) {
@@ -49,6 +49,14 @@ const sendMail = async () => {
     try {
         if (!cachedTransporter) {
             cachedTransporter = createTransporter();
+            cachedTransporter.verify((error, success) => {
+                if (error) {
+                    logger.error("SMTP connection failed:", error);
+                } else {
+                    logger.info("SMTP connection successful!");
+                }
+            });
+
         }
 
         if (todaysBdays.length > 0) {
