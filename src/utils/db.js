@@ -3,17 +3,24 @@ const { Pool } = pkg;
 import dotenv from 'dotenv';
 
 dotenv.config();
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 
 const pool = new Pool({
-    user: process.env.user,
-    host: process.env.host,
-    database: process.env.database,
-    password: process.env.password,
-    port: '27942',
-    ssl: {
-    rejectUnauthorized: false, // Use true if you have the CA certificate
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+(async () => {
+  try {
+    const res = await pool.query("SELECT NOW()");
+    console.log("✅ Database connected successfully!");
+    console.log("Server Time:", res.rows[0].now);
+  } catch (err) {
+    console.error("❌ Database connection failed:", err);
   }
-})
+})();
 
 export default pool;

@@ -8,7 +8,7 @@ import { scheduleCronJobs } from './cron.js';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const runport = process.env.runport || 5000;
 
 // CORS configuration
 
@@ -33,17 +33,14 @@ app.use((req, res, next) => {
 app.use('/api/v1', routes);
 
 
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'UP' });
-})
-
-
 // Start server
-app.listen(port, async () => {
+app.listen(runport, async () => {
     scheduleCronJobs()
     // await testDatabaseConnection();
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${runport}`);
 });
 
-
+app.get('/', (req, res) => {
+    res.status(200).json({ status: 'Ok' });
+})
 export default app;

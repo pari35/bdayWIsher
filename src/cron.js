@@ -4,13 +4,17 @@ import pool from '../src/utils/db.js';
 import logger from './logger.js';
 import cron from 'node-cron';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 let cachedTransporter = null
 function createTransporter() {
     const host = "smtp.gmail.com"
     const port = 465
     const secure = true
     const user = "paritoshpardeshi35@gmail.com"
-    const pass = "qjldihxbyopkijxr"
+    const pass = process.env.pass
 
     if (!host || !port || !user || !pass) {
         throw new Error('SMTP configuration missing. Ensure SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS are set');
@@ -28,8 +32,8 @@ function createTransporter() {
 
 const scheduleCronJobs = () => {
     // Logs when the cron job is scheduled and active
-    cron.schedule('*/1 * * * *', async () => {
-    // cron.schedule('0 7 * * *', async () => {
+    // cron.schedule('*/1 * * * *', async () => {
+     cron.schedule('0 0 * * *', async () => {
         logger.info('Cron job starting: Sending Birthday Mail...');
         try {
 
@@ -37,7 +41,7 @@ const scheduleCronJobs = () => {
 
         } catch (error) {
             // Logs detailed error if cron job fails
-            logger.error('Error in order notifications cron job:', error);
+            logger.error('Error in cron job:', error);
         }
     });
 }
