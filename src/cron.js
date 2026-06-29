@@ -33,7 +33,7 @@ function createTransporter() {
 const scheduleCronJobs = () => {
     // Logs when the cron job is scheduled and active
     // cron.schedule('*/1 * * * *', async () => {
-    cron.schedule('10 13 * * *', async () => {
+    cron.schedule('22 13 * * *', async () => {
         logger.info('Cron job starting: Sending Birthday Mail...');
         try {
 
